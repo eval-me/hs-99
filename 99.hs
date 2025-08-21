@@ -38,4 +38,18 @@ myReverse (h:xs) = (myReverse xs) ++ [h]
 isPalindrome :: Eq a => [a] -> Bool
 isPalindrome lst = (reverse lst) == lst
 
- 
+-- 07: Flatten a List.
+data NestedList a = Elem a | List [NestedList a]
+myFlatten :: NestedList a -> [a]
+myFlatten (Elem x) = [x]
+myFlatten (List (x:xs)) = myFlatten x ++ (myFlatten (List xs))
+
+-- 08: Compress a List.
+myCompress :: Eq a => [a] -> [a]
+myCompress [] = []
+myCompress [a] = [a]
+myCompress (a:b:xs) = if (a == b) then myCompress(b : xs) else a : myCompress(b : xs)
+
+-- 09: Pack a List.
+
+

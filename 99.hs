@@ -77,3 +77,12 @@ myDecodeModified lst = concat $ map decode lst
                     case l of
                       Single elm     -> [elm]
                       Multiple n elm -> replicate n elm)
+
+-- 13: Direct run-length encoding.
+myDirectEncoding :: Eq a => [a] -> [(Int, a)]
+myDirectEncoding [] = []
+myDirectEncoding (x:xs) = myHelper xs (1, x)
+  where
+    myHelper [] acc = [acc]
+    myHelper (x:xs) (acc, elm) = if x == elm then myHelper xs (acc+1, elm)
+                                 else (acc, elm) : myHelper xs (1, x)

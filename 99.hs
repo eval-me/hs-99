@@ -86,3 +86,16 @@ myDirectEncoding (x:xs) = myHelper xs (1, x)
     myHelper [] acc = [acc]
     myHelper (x:xs) (acc, elm) = if x == elm then myHelper xs (acc+1, elm)
                                  else (acc, elm) : myHelper xs (1, x)
+
+-- 14: Duplicate elements
+myDupli :: [a] -> [a]
+myDupli [] = []
+myDupli (x : xs) = x : x : myDupli xs 
+
+-- 15: Replicate elements given a number
+myRepli :: [a] -> Int -> [a]
+myRepli [] _ = []
+myRepli lst 0 = lst
+myRepli lst 1 = lst
+myRepli [a] n = a : (myRepli [a] (n-1))
+myRepli (x : xs) n = (myRepli (x : []) n) ++ (myRepli xs n)

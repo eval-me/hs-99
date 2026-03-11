@@ -99,3 +99,34 @@ myRepli lst 0 = lst
 myRepli lst 1 = lst
 myRepli [a] n = a : (myRepli [a] (n-1))
 myRepli (x : xs) n = (myRepli (x : []) n) ++ (myRepli xs n)
+
+-- 16: Drop every nth element
+myDropEvery :: [a] -> Int -> [a]
+myDropEvery lst n = helper lst n 1
+  where
+    helper [] _ _ = []
+    helper _ 1 _ = []
+    helper lst 0 _ = lst
+    helper (x : xs) n m =
+      if (m `mod` n == 0 && n <= m) then
+        helper xs n (m+1) else
+        x : (helper xs n (m+1))
+
+-- 17: Split a list into two parts.
+mySplit :: [a] -> Int -> [[a]]
+mySplit lst n = [take n lst, drop n lst]
+          
+-- 18: Slice the list
+mySlice :: [a] -> Int -> Int -> [a]
+mySlice lst i j = take (j-i+1) (drop (i-1) lst)
+
+-- 19: Rotate a list N places to the left.
+myRotate :: [a] -> Int -> [a]
+myRotate lst n = if n > 0 then
+                   drop (n `mod` (length lst)) lst ++ take (n `mod` (length lst)) lst
+                 else
+                   drop ((length lst + n) `mod` (length lst)) lst ++ take ((length lst + n) `mod` (length lst)) lst
+
+-- 20 Remove the K'th element from a list
+myRemoveAt :: Int -> [a] -> [a]
+myRemoveAt n lst = (take (n-1) lst) ++ (drop n lst)

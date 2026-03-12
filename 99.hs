@@ -127,6 +127,14 @@ myRotate lst n = if n > 0 then
                  else
                    drop ((length lst + n) `mod` (length lst)) lst ++ take ((length lst + n) `mod` (length lst)) lst
 
--- 20 Remove the K'th element from a list
+-- 20: Remove the K'th element from a list
 myRemoveAt :: Int -> [a] -> [a]
 myRemoveAt n lst = (take (n-1) lst) ++ (drop n lst)
+
+-- 21: Insert an element at a given position into a list.
+myInsertAt :: a -> [a] -> Int -> [a]
+myInsertAt s lst n = (take (n-1) lst) ++ [s] ++ (drop (n-1) lst)
+
+-- 22: Create a list containing all integers within a given range.
+myRange :: Int -> Int -> [Int]
+myRange n m = [n..m]
